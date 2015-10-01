@@ -1,0 +1,9 @@
+<h1>ToDo List</h1>
+
+<%= render 'form' %>
+
+<ul>
+  <% @items.each do |item| %>
+    <li><%= item.task %></li>
+  <% end %>
+</ul>

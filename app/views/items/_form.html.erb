@@ -1,0 +1,10 @@
+<%= form_for :item, url: items_path do |f| %>
+  <p>
+    <%= f.label :task %><br>
+    <%= f.text_field :task %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
