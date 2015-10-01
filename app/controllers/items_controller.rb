@@ -3,13 +3,34 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def completed
+    @items = Item.where(:completed => true)
+    render :index
+  end
+
+  def active
+    @items = Item.where(:completed => false)
+    render :index
+  end
+
   def create
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to items_path
+      redirect_to root_path
     else
-      redirect_to items_path
+      redirect_to root_path
+    end
+  end
+
+  def complete
+    @item = Item.find(params[:id])
+    @item.update(completed: true)
+
+    if params[:from] == 'active'
+      redirect_to active_items_path
+    else
+      redirect_to root_path
     end
   end
 

@@ -5,7 +5,16 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :items
+  resources :items, :except => [:update] do
+    collection do
+      get :completed
+      get :active
+    end
+
+    member do
+      post :complete
+    end
+  end
 
   root 'items#index'
 
