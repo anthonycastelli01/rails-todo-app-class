@@ -1,7 +1,7 @@
-<%= form_for :item, url: items_path do |f| %>
+<%= form_for :item, url: items_path, html: {class: "newItemForm"} do |f| %>
   <p>
     <%= f.label :task %><br>
-    <%= f.text_field :task %>
+    <%= f.text_field :task, id: 'inputField' %>
   </p>
 
   <p>

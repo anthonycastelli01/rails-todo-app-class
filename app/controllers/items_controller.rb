@@ -14,13 +14,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.create(item_params)
 
-    if @item.save
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    render :'_item', layout: false
   end
 
   def complete
@@ -40,6 +36,19 @@ class ItemsController < ApplicationController
 
     if params[:from] == 'completed'
       redirect_to completed_items_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+
+    if params[:from] == 'completed'
+      redirect_to completed_items_path
+    elsif params[:from] == 'active'
+      redirect_to active_items_path
     else
       redirect_to root_path
     end
