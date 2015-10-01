@@ -34,6 +34,17 @@ class ItemsController < ApplicationController
     end
   end
 
+  def incomplete
+    @item = Item.find(params[:id])
+    @item.update(completed: false)
+
+    if params[:from] == 'completed'
+      redirect_to completed_items_path
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def item_params

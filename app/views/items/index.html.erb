@@ -6,7 +6,9 @@
   <% @items.each do |item| %>
     <li><%= item.task %> -
         <%= item.completed %>
-        <%= item.completed ? "" : link_to("Complete", complete_item_path(item, :from => action_name), :method => 'post') %></li>
+        <%= item.completed ?
+              link_to("Incomplete", incomplete_item_path(item, :from => action_name), :method => 'post') :
+              link_to("Complete", complete_item_path(item, :from => action_name), :method => 'post') %></li>
   <% end %>
 </ul>
 
