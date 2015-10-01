@@ -1,0 +1,15 @@
+<h1>ToDo List</h1>
+
+<%= render 'form' %>
+
+<ul>
+  <% @items.each do |item| %>
+    <li><%= item.task %> -
+        <%= item.completed %>
+        <%= item.completed ? "" : link_to("Complete", complete_item_path(item, :from => action_name), :method => 'post') %></li>
+  <% end %>
+</ul>
+
+<%= link_to "All", root_path%>
+<%= link_to "Completed", completed_items_path%>
+<%= link_to "Active", active_items_path%>
