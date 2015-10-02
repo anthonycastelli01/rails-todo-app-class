@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :completed
       get :active
+      get :home
     end
 
     member do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'items#index'
+  root 'items#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

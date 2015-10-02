@@ -1,16 +1,22 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
+
+    render partial: 'list', locals: {items: @items}
+  end
+
+  def home
+    @items = Item.all
   end
 
   def completed
     @items = Item.where(:completed => true)
-    render :index
+    render partial: 'list', locals: {items: @items}
   end
 
   def active
     @items = Item.where(:completed => false)
-    render :index
+    render partial: 'list', locals: {items: @items}
   end
 
   def create
@@ -45,12 +51,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
 
-    if params[:from] == 'completed'
-      redirect_to completed_items_path
-    elsif params[:from] == 'active'
-      redirect_to active_items_path
-    else
-      redirect_to root_path
+    case params[:from]
+    when 'completed' then redirect_to completed_items_path
+    when 'active' then redirect_to active_items_path
+    else redirect_to root_path
     end
   end
 

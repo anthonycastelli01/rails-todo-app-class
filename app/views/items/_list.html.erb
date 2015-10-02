@@ -1,0 +1,10 @@
+<% items.each do |item| %>
+  <li><%= item.task %> -
+      <%= item.completed %> -
+      <% if item.completed %>
+        <%= link_to("Undo", incomplete_item_path(item, :from => action_name), class: 'undo', :method => 'post') %>
+      <% else %>
+        <%= link_to("Complete", complete_item_path(item, :from => action_name), class: 'complete', :method => 'post') %>
+      <% end %>
+      - <%= link_to('Delete', item_path(item, :from => action_name), class: 'delete', :method => 'delete') %></li>
+<% end %>

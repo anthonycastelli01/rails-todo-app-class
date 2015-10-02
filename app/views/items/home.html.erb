@@ -1,11 +1,11 @@
 <h1>ToDo List</h1>
--<p>Find me in app/views/welcome/index.html.erb</p>   +
-<%= render 'form' url: %>
+
+<%= render 'form' %>
 
 <ul>
   <%= render partial: 'list', locals: {items: @items}, layout: false %>
 </ul>
 
-<%= link_to "All", root_path, id: 'sort_none'%>
+<%= link_to "All", items_path, id: 'sort_none'%>
 <%= link_to "Completed", completed_items_path, id: 'sort_complete'%>
 <%= link_to "Active", active_items_path, id: 'sort_active'%>
