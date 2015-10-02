@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     member do
       post :complete
+      post :incomplete
     end
   end
 

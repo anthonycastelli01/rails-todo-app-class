@@ -1,0 +1,6 @@
+<li>
+  <%= @item.task %> -
+  <%= @item.completed %>
+  <%= link_to("Complete", complete_item_path(@item, @item.id), class: "completeButton", :method => 'post') %>
+  <%= link_to('Delete', item_path(@item, @item.id), class: "deleteButton", :method => 'delete') %>
+</li>

@@ -2,14 +2,18 @@
 
 <%= render 'form' %>
 
-<ul>
+<ul class="itemList">
   <% @items.each do |item| %>
     <li><%= item.task %> -
         <%= item.completed %>
-        <%= item.completed ? "" : link_to("Complete", complete_item_path(item, :from => action_name), :method => 'post') %></li>
+        <%= item.completed ?
+              link_to("Incomplete", incomplete_item_path(item, :from => action_name), class: "incompleteButton", :method => 'post') :
+              link_to("Complete", complete_item_path(item, :from => action_name), class: "completeButton", :method => 'post') %>
+        <%= link_to('Delete', item_path(item, :from => action_name), class: "deleteButton", :method => 'delete') %>
+    </li>
   <% end %>
 </ul>
 
-<%= link_to "All", root_path%>
-<%= link_to "Completed", completed_items_path%>
-<%= link_to "Active", active_items_path%>
+<%= link_to "All", root_path, id: "allLink" %>
+<%= link_to "Completed", completed_items_path, id: "completedLink" %>
+<%= link_to "Active", active_items_path, id: "activeLink" %>
